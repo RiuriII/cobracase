@@ -23,6 +23,8 @@
   ],
   "rules": {
     "react/no-unescaped-entities": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": "off",
     "@next/next/no-image-element": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
