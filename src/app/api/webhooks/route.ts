@@ -80,6 +80,7 @@ export async function POST(req: Request) {
         react: OrderReceivedEmail({
           orderId,
           orderDate: updatedOrder.createdAt.toLocaleDateString(),
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           shippingAddress: {
             name: session.customer_details!.name!,

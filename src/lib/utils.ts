@@ -41,6 +41,7 @@ export function constructMetadata({
       title,
       description,
       images: [image]
-    }
+    },
+    metadataBase: new URL("https://cobracase-liard.vercel.app/")
   };
 }
