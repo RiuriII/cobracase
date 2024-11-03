@@ -3,13 +3,16 @@
 import { BASE_PRICE, PRODUCT_PRICES } from "@/config/products";
 import { db } from "@/db";
 import { stripe } from "@/lib/stripe";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Order } from "@prisma/client";
 
 export const createCheckoutSession = async ({
-  configId
+  configId,
+  user
 }: {
   configId: string;
+  user: KindeUser<Record<string, unknown>> | null;
 }) => {
   const configuration = await db.configuration.findUnique({
     where: { id: configId }
@@ -19,8 +22,13 @@ export const createCheckoutSession = async ({
     throw new Error("No such configuration found");
   }
 
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  if (!user) {
+    throw new Error("You need to be logged in");
+  }
+
+  // const { getUser } = getKindeServerSession();
+
+  // const user = await getUser();
 
   if (!user) {
     throw new Error("You need to be logged in");

@@ -14,16 +14,21 @@ import { BASE_PRICE, PRODUCT_PRICES } from "@/config/products";
 import { useToast } from "@/hooks/use-toast";
 import { cn, formatPrice } from "@/lib/utils";
 import { COLORS, MODELS } from "@/validators/optionValidator";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Configuration } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, Check } from "lucide-react";
 
-const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
+const DesignPreview = ({
+  configuration,
+  user
+}: {
+  configuration: Configuration;
+  user: KindeUser<Record<string, unknown>> | null;
+}) => {
   const router = useRouter();
   const { toast } = useToast();
   const { id } = configuration;
-  const { user } = useKindeBrowserClient();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
@@ -64,7 +69,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const handleCheckout = () => {
     if (user) {
       // create payment session
-      createPaymentSession({ configId: id });
+      createPaymentSession({ configId: id, user });
     } else {
       // need to log in
       localStorage.setItem("configurationId", id);
