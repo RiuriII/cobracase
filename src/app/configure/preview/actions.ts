@@ -3,7 +3,6 @@
 import { BASE_PRICE, PRODUCT_PRICES } from "@/config/products";
 import { db } from "@/db";
 import { stripe } from "@/lib/stripe";
-// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 import { Order } from "@prisma/client";
 
@@ -21,14 +20,6 @@ export const createCheckoutSession = async ({
   if (!configuration) {
     throw new Error("No such configuration found");
   }
-
-  if (!user) {
-    throw new Error("You need to be logged in");
-  }
-
-  // const { getUser } = getKindeServerSession();
-
-  // const user = await getUser();
 
   if (!user) {
     throw new Error("You need to be logged in");
@@ -76,7 +67,7 @@ export const createCheckoutSession = async ({
   const stripeSession = await stripe.checkout.sessions.create({
     success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
     cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/configure/preview?id=${configuration.id}`,
-    payment_method_types: ["card", "paypal"],
+    payment_method_types: ["card"],
     mode: "payment",
     shipping_address_collection: { allowed_countries: ["DE", "US"] },
     metadata: {
