@@ -1,5 +1,4 @@
-import { db } from "../../../db";
-
+import { db } from "@/db";
 import sharp from "sharp";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { z } from "zod";
@@ -16,11 +15,9 @@ export const ourFileRouter = {
       const { configId } = metadata.input;
 
       const res = await fetch(file.url);
-
       const buffer = await res.arrayBuffer();
 
       const imgMetadata = await sharp(buffer).metadata();
-
       const { width, height } = imgMetadata;
 
       if (!configId) {
@@ -34,14 +31,16 @@ export const ourFileRouter = {
 
         return { configId: configuration.id };
       } else {
-        const configuration = await db.configuration.update({
-          where: { id: configId },
+        const updatedConfiguration = await db.configuration.update({
+          where: {
+            id: configId
+          },
           data: {
             croppedImageUrl: file.url
           }
         });
 
-        return { configId: configuration.id };
+        return { configId: updatedConfiguration.id };
       }
     })
 } satisfies FileRouter;

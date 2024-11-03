@@ -33,7 +33,6 @@ export const createCheckoutSession = async ({
   if (material === "polycarbonate")
     price += PRODUCT_PRICES.material.polycarbonate;
 
-  console.log(user.id, configuration.id);
   let order: Order | undefined = undefined;
 
   const existingOrder = await db.order.findFirst({
@@ -42,6 +41,8 @@ export const createCheckoutSession = async ({
       configurationId: configuration.id
     }
   });
+
+  console.log(user.id, configuration.id);
 
   if (existingOrder) {
     order = existingOrder;
@@ -67,9 +68,9 @@ export const createCheckoutSession = async ({
   const stripeSession = await stripe.checkout.sessions.create({
     success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
     cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/configure/preview?id=${configuration.id}`,
-    payment_method_types: ["card"],
+    payment_method_types: ["card", "paypal"],
     mode: "payment",
-    shipping_address_collection: { allowed_countries: ["DE", "US", "BR"] },
+    shipping_address_collection: { allowed_countries: ["DE", "US"] },
     metadata: {
       userId: user.id,
       orderId: order.id
