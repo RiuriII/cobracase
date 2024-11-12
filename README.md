@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CaseCobra - A Modern Fullstack E-Commerce Shop for Custom Phone Cases
 
-## Getting Started
+## Overview
+CaseCobra é uma loja e-commerce completa desenvolvida do zero usando o Next.js 14 App Router, Postgres, TypeScript, Tailwind e Kinde Auth. Este projeto é baseado no tutorial de [Josh tried coding](https://github.com/joschan21).
 
-First, run the development server:
+![Project Image](./layout.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+- 🛠️ **Loja Completa**: Construído do zero em Next.js 14
+- 💳 **Painel de Admin Secreto**: Para gerenciar pedidos de forma eficiente
+- 🖥️ **Uploads de Arquivos**: Funcionalidade de arrastar e soltar
+- 🛍️ **Compras Diretas**: Os clientes podem comprar diretamente de você
+- 🌟 **UI Moderna e Limpa**: Construído sobre shadcn-ui
+- 🛒 **Configurador de Capas Personalizadas**: Totalmente customizável
+- 🔑 **Autenticação com Kinde**: Garantindo segurança e praticidade
+- ✉️ **E-mail de Agradecimento**: Bonito e informativo após a compra
+- ⌨️ **100% em TypeScript**: Garantindo tipagem e segurança de dados
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Demo 
+[CaseCobra](https://cobracase-liard.vercel.app/)

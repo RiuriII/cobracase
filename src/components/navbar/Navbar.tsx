@@ -28,6 +28,7 @@ const Navbar = async () => {
             {user ? (
               <>
                 <LogoutLink
+                  postLogoutRedirectURL="/"
                   className={buttonVariants({
                     size: "sm",
                     variant: "ghost",
